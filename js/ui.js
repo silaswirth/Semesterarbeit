@@ -1,40 +1,35 @@
-const people = document.querySelector('.people');
+const todo = document.querySelector('.todos');
 
 document.addEventListener('DOMContentLoaded', function () {
-  // nav menu
-  const menus = document.querySelectorAll('.side-menu');
-  M.Sidenav.init(menus, {
-    edge: 'right'
-  });
-  // add people form
-  const forms = document.querySelectorAll('.side-form');
+  // add todo form
+  let forms = document.querySelectorAll('.side-form');
   M.Sidenav.init(forms, {
     edge: 'left'
   });
 });
 
-// render people data
-const renderPerson = (data, id) => {
-
+const renderTodo = (data, id) => {
   const html = `
-    <div class="card-panel person white row" data-id="${id}">
-      <img src="/img/avatar3.png" alt="person thumb">
-      <div class="person-details">
-        <div class="person-firstname">${data.firstname}</div>
-        <div class="person-lastname">${data.lastname}</div>
-        <div class="person-age"> ${data.age}</div>
+    <div class="card-panel todo white row" data-id="${id}">
+       <div class="todo-details">
+        <div class="todo-titel">${data.titel}</div>
+        <div class="todo-beschreibung">${data.beschreibung}</div>
+        <div class="todo-datum"> ${data.datum}</div>
       </div>
-      <div class="person-delete">
+      <div class="todo-delete">
         <i class="material-icons" data-id="${id}">delete_outline</i>
+      </div>
+      <div class="todo-edit">
+        <i class="material-icons" data-id="${id}">edit</i>
       </div>
     </div>
   `;
-  people.innerHTML += html;
+  todo.innerHTML += html;
 };
 
-// remove recipe
-const removePerson = (id) => {
-  const person = document.querySelector(`.person[data-id=${id}]`);
-  console.log(person);
-  person.remove();
+// remove todo
+const removeTodo = (id) => {
+  const todo = document.querySelector(`.todo[data-id=${id}]`);
+  console.log(todo);
+  todo.remove();
 };

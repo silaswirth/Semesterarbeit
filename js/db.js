@@ -11,43 +11,43 @@ db.enablePersistence()
   });
 
 // real-time listener
-db.collection('people').onSnapshot(snapshot => {
+db.collection('todos').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if (change.type === 'added') {
       console.log(change);
-      renderPerson(change.doc.data(), change.doc.id);
+      renderTodo(change.doc.data(), change.doc.id);
     }
     if (change.type === 'removed') {
-      removePerson(change.doc.id);
+      removeTodo(change.doc.id);
     }
   });
 });
 
-// add new person
+// add new todo
 const form = document.querySelector('form');
 form.addEventListener('submit', evt => {
   evt.preventDefault();
 
-  const person = {
-    firstname: form.firstname.value,
-    lastname: form.lastname.value,
-    age: form.age.value
+  const todo = {
+    titel: form.titel.value,
+    beschreibung: form.beschreibung.value,
+    datum: form.datum.value
   };
 
-  db.collection('people').add(person)
+  db.collection('todos').add(todo)
     .catch(err => console.log(err));
 
-  form.firstname.value = '';
-  form.lastname.value = '';
-  form.age.value = '';
+  form.titel.value = '';
+  form.beschreibung.value = '';
+  form.datum.value = '';
 });
 
-// remove a person
-const recipeContainer = document.querySelector('.people');
+// remove a todo
+const recipeContainer = document.querySelector('.todos');
 recipeContainer.addEventListener('click', evt => {
   if (evt.target.tagName === 'I') {
     const id = evt.target.getAttribute('data-id');
     console.log(id);
-    db.collection('people').doc(id).delete();
+    db.collection('todos').doc(id).delete();
   }
 })
