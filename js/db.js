@@ -41,13 +41,3 @@ form.addEventListener('submit', evt => {
   form.beschreibung.value = '';
   form.datum.value = '';
 });
-
-// remove a todo
-const recipeContainer = document.querySelector('.todos');
-recipeContainer.addEventListener('click', evt => {
-  if (evt.target.tagName === 'I') {
-    const id = evt.target.getAttribute('data-id');
-    console.log(id);
-    db.collection('todos').doc(id).delete();
-  }
-})

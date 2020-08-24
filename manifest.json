@@ -1,6 +1,6 @@
 {
-  "name": "Contactplus",
-  "short_name": "contactplus",
+  "name": "Todonow",
+  "short_name": "todonow",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#00695c",

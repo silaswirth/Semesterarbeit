@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const renderTodo = (data, id) => {
+  let todoelement = document.createElement("div")
   const html = `
     <div class="card-panel todo white row" data-id="${id}">
        <div class="todo-details">
@@ -24,7 +25,16 @@ const renderTodo = (data, id) => {
       </div>
     </div>
   `;
-  todo.innerHTML += html;
+  todoelement.innerHTML = html;
+  todo.appendChild(todoelement);
+  const recipeContainer = todoelement.querySelector('.todo-delete');
+recipeContainer.addEventListener('click', evt => {
+  if (evt.target.tagName === 'I') {
+    const id = evt.target.getAttribute('data-id');
+    console.log(id);
+    db.collection('todos').doc(id).delete();
+  }
+})
 };
 
 // remove todo
