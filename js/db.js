@@ -11,7 +11,7 @@ db.enablePersistence()
   });
 
 // real-time listener
-db.collection('todos').onSnapshot(snapshot => {
+db.collection('todos').orderBy('datum').onSnapshot(snapshot => {
   snapshot.docChanges().forEach(change => {
     if (change.type === 'added') {
       console.log(change);

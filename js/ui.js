@@ -20,15 +20,12 @@ const renderTodo = (data, id) => {
       <div class="todo-delete">
         <i class="material-icons" data-id="${id}">delete_outline</i>
       </div>
-      <div class="todo-edit">
-        <i class="material-icons" data-id="${id}">edit</i>
-      </div>
-    </div>
+     </div>
   `;
   todoelement.innerHTML = html;
   todo.appendChild(todoelement);
-  const recipeContainer = todoelement.querySelector('.todo-delete');
-recipeContainer.addEventListener('click', evt => {
+  const todoContainer = todoelement.querySelector('.todo-delete');
+todoContainer.addEventListener('click', evt => {
   if (evt.target.tagName === 'I') {
     const id = evt.target.getAttribute('data-id');
     console.log(id);
